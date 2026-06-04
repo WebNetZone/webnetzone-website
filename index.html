@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebNetZone – IT-Lösungen aus Hannover</title>
+  <meta name="description" content="WebNetZone – Softwareentwicklung und IT-Dienstleistungen aus Hannover. Persönlich, zuverlässig, auf den Punkt.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue-dark:  #1a3560;
+      --blue:       #2456d4;
+      --blue-mid:   #3a7afe;
+      --blue-light: #6fb1ff;
+      --blue-pale:  #dbeafe;
+      --blue-faint: #eff6ff;
+      --text:       #1e293b;
+      --text-muted: #475569;
+      --line:       #bfdbfe;
+      --white:      #ffffff;
+      --radius:     10px;
+      --shadow:     0 2px 16px rgba(26,53,96,.08);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 17px;
+      line-height: 1.65;
+      color: var(--text);
+      background: var(--white);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'DM Serif Display', serif;
+      line-height: 1.2;
+      color: var(--blue-dark);
+    }
+
+    a { color: var(--blue-mid); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+
+    /* ─── NAV ─────────────────────────────────────────────── */
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255,255,255,.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 62px;
+    }
+
+    .logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.25rem;
+      color: var(--blue-dark);
+      letter-spacing: -.01em;
+    }
+
+    .logo span { color: var(--blue-mid); }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: .9rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      transition: color .15s;
+    }
+
+    .nav-links a:hover { color: var(--blue-dark); text-decoration: none; }
+
+    .btn {
+      display: inline-block;
+      padding: 10px 22px;
+      border-radius: 6px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: .9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background .15s, transform .1s;
+      border: none;
+    }
+
+    .btn-primary { background: var(--blue-mid); color: var(--white); }
+    .btn-primary:hover { background: var(--blue-dark); text-decoration: none; transform: translateY(-1px); }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--blue-mid);
+      border: 2px solid var(--blue-mid);
+    }
+
+    .btn-outline:hover { background: var(--blue-faint); text-decoration: none; }
+
+    .btn-lg { padding: 14px 32px; font-size: 1rem; }
+
+    /* ─── HERO ────────────────────────────────────────────── */
+
+    .hero {
+      background: linear-gradient(160deg, var(--blue-faint) 0%, var(--white) 60%);
+      padding: 96px 0 88px;
+    }
+
+    .hero-eyebrow {
+      display: inline-block;
+      font-size: .8rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--blue-mid);
+      background: var(--blue-pale);
+      padding: 4px 14px;
+      border-radius: 20px;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.4rem, 5vw, 3.6rem);
+      color: var(--blue-dark);
+      max-width: 700px;
+      margin-bottom: 20px;
+    }
+
+    .hero-sub {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      max-width: 520px;
+      margin-bottom: 40px;
+    }
+
+    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+
+    /* ─── SECTIONS ────────────────────────────────────────── */
+
+    section { padding: 80px 0; }
+
+    .section-label {
+      font-size: .78rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--blue-mid);
+      margin-bottom: 12px;
+    }
+
+    .section-title { font-size: clamp(1.7rem, 3.5vw, 2.4rem); margin-bottom: 16px; }
+    .section-sub { font-size: 1.05rem; color: var(--text-muted); max-width: 600px; }
+    .section-header { margin-bottom: 52px; }
+
+    /* ─── PRODUKT ─────────────────────────────────────────── */
+
+    .produkt { background: var(--blue-faint); }
+
+    .produkt-card {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 48px 44px;
+      max-width: 720px;
+      box-shadow: var(--shadow);
+      display: flex;
+      gap: 40px;
+      align-items: flex-start;
+    }
+
+    .produkt-icon {
+      font-size: 3rem;
+      flex-shrink: 0;
+      margin-top: 4px;
+    }
+
+    .produkt-body h3 {
+      font-size: 1.6rem;
+      margin-bottom: 12px;
+    }
+
+    .produkt-body p {
+      font-size: .97rem;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+      line-height: 1.7;
+    }
+
+    /* ─── ÜBER ────────────────────────────────────────────── */
+
+    .ueber { background: var(--white); }
+
+    .ueber-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+
+    .ueber-text p {
+      color: var(--text-muted);
+      font-size: .97rem;
+      line-height: 1.75;
+      margin-bottom: 16px;
+    }
+
+    .ueber-text p:last-child { margin-bottom: 0; }
+
+    .ueber-facts {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .fact {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 20px 22px;
+      background: var(--blue-faint);
+      border-radius: var(--radius);
+      border-left: 3px solid var(--blue-mid);
+    }
+
+    .fact-icon { font-size: 1.4rem; flex-shrink: 0; }
+
+    .fact-body h4 { font-size: .97rem; margin-bottom: 4px; }
+    .fact-body p  { font-size: .87rem; color: var(--text-muted); }
+
+    /* ─── KONTAKT ─────────────────────────────────────────── */
+
+    .kontakt { background: var(--blue-dark); }
+
+    .kontakt .section-label { color: var(--blue-light); }
+    .kontakt .section-title { color: var(--white); }
+
+    .kontakt-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .kontakt-sub {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,.7);
+      max-width: 500px;
+      margin-bottom: 36px;
+    }
+
+    .kontakt-details {
+      display: flex;
+      gap: 32px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 32px;
+    }
+
+    .kontakt-detail {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: .92rem;
+      color: rgba(255,255,255,.75);
+    }
+
+    .kontakt-detail a { color: rgba(255,255,255,.9); }
+    .kontakt-detail a:hover { color: var(--white); }
+    .kontakt-detail-icon { font-size: 1.1rem; }
+
+    .btn-white {
+      background: var(--white);
+      color: var(--blue-dark);
+      font-weight: 700;
+    }
+
+    .btn-white:hover { background: var(--blue-pale); text-decoration: none; transform: translateY(-1px); }
+
+    /* ─── FOOTER ──────────────────────────────────────────── */
+
+    footer {
+      background: #0f2040;
+      color: rgba(255,255,255,.5);
+      padding: 32px 0;
+      font-size: .85rem;
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.1rem;
+      color: var(--white);
+    }
+
+    .footer-logo span { color: var(--blue-light); }
+
+    .footer-links { display: flex; gap: 24px; flex-wrap: wrap; }
+    .footer-links a { color: rgba(255,255,255,.5); transition: color .15s; }
+    .footer-links a:hover { color: var(--white); text-decoration: none; }
+
+    /* ─── RESPONSIVE ──────────────────────────────────────── */
+
+    @media (max-width: 768px) {
+      section { padding: 56px 0; }
+      .hero { padding: 64px 0 56px; }
+      .nav-links { display: none; }
+      .produkt-card { flex-direction: column; gap: 20px; padding: 32px 24px; }
+      .ueber-inner { grid-template-columns: 1fr; gap: 40px; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-actions { flex-direction: column; }
+      .kontakt-details { flex-direction: column; gap: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="container">
+    <div class="nav-inner">
+      <span class="logo">Web<span>Net</span>Zone</span>
+      <ul class="nav-links">
+        <li><a href="#produkt">Produkt</a></li>
+        <li><a href="#ueber">Über uns</a></li>
+        <li><a href="#kontakt" class="btn btn-primary" style="padding:8px 18px;">Kontakt</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="start">
+  <div class="container">
+    <div class="hero-eyebrow">IT-Lösungen aus Hannover</div>
+    <h1>Software, die funktioniert — ohne Umwege.</h1>
+    <p class="hero-sub">WebNetZone entwickelt schlanke Softwarelösungen und bietet persönlichen IT-Support für Unternehmen und Bildungseinrichtungen.</p>
+    <div class="hero-actions">
+      <a href="#produkt" class="btn btn-primary btn-lg">Unser Produkt</a>
+      <a href="#kontakt" class="btn btn-outline btn-lg">Kontakt aufnehmen</a>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUKT -->
+<section class="produkt" id="produkt">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Aktuelles Produkt</div>
+      <h2 class="section-title">Schulinventar</h2>
+      <p class="section-sub">Unsere erste eigene Software-Lösung — speziell für Schulen.</p>
+    </div>
+    <div class="produkt-card">
+      <div class="produkt-icon">📋</div>
+      <div class="produkt-body">
+        <h3>Inventarverwaltung für Schulen</h3>
+        <p>Schulinventar ist eine schlanke Web-App zur Verwaltung von Geräten und Büchern. Ausleihe per QR-Scan, eigener Server pro Schule, persönliche Einrichtung vor Ort — kein Excel-Chaos mehr. Läuft im Browser, installierbar wie eine App, kein App-Store.</p>
+        <a href="https://schulinventar.webnetzone.de" class="btn btn-primary" target="_blank" rel="noopener">Mehr erfahren →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ÜBER -->
+<section class="ueber" id="ueber">
+  <div class="container">
+    <div class="ueber-inner">
+      <div class="ueber-text">
+        <div class="section-label">Über WebNetZone</div>
+        <h2 class="section-title">Persönlich, direkt, aus Hannover.</h2>
+        <p>WebNetZone ist ein Einzelunternehmen mit Fokus auf praxisnahe Softwarelösungen. Kein Konzern, kein anonymes Ticketsystem — Sie haben immer einen direkten Ansprechpartner.</p>
+        <p>Gegründet 2026 in Hannover. Aktueller Schwerpunkt: Schulinventar. Perspektivisch: Webentwicklung, IT-Beratung und weitere maßgeschneiderte Lösungen.</p>
+      </div>
+      <div class="ueber-facts">
+        <div class="fact">
+          <div class="fact-icon">📍</div>
+          <div class="fact-body">
+            <h4>Standort Hannover</h4>
+            <p>Vor-Ort-Termine in der Region jederzeit möglich.</p>
+          </div>
+        </div>
+        <div class="fact">
+          <div class="fact-icon">🤝</div>
+          <div class="fact-body">
+            <h4>Persönlicher Ansprechpartner</h4>
+            <p>Kein Support-Ticket. Direkter Kontakt, kurze Wege.</p>
+          </div>
+        </div>
+        <div class="fact">
+          <div class="fact-icon">🔒</div>
+          <div class="fact-body">
+            <h4>Datenschutz first</h4>
+            <p>Hosting in Deutschland, DSGVO-konform, keine geteilten Daten.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KONTAKT -->
+<section class="kontakt" id="kontakt">
+  <div class="container">
+    <div class="kontakt-inner">
+      <div class="section-label">Kontakt</div>
+      <h2 class="section-title">Sprechen wir miteinander.</h2>
+      <p class="kontakt-sub">Frage, Anfrage oder Demo-Wunsch — schreiben Sie einfach. Antwort innerhalb eines Werktages.</p>
+      <a href="mailto:info@webnetzone.de" class="btn btn-white btn-lg">info@webnetzone.de</a>
+      <div class="kontakt-details">
+        <div class="kontakt-detail">
+          <span class="kontakt-detail-icon">📍</span>
+          <span>Davenstedter Str. 64, 30453 Hannover</span>
+        </div>
+        <div class="kontakt-detail">
+          <span class="kontakt-detail-icon">📞</span>
+          <a href="tel:+4915738838801">0157 388 388 01</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <span class="footer-logo">Web<span>Net</span>Zone</span>
+      <div class="footer-links">
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+      </div>
+      <span>© 2026 WebNetZone · Aristotelis Milionis</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
