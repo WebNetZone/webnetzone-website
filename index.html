@@ -220,8 +220,10 @@
       letter-spacing: -.02em; text-decoration: none;
     }
     .logo:hover { text-decoration: none; }
-    .logo svg { width: 30px; height: 30px; flex-shrink: 0; transition: transform .5s var(--ease); }
-    .logo:hover svg { transform: rotate(-12deg) scale(1.08); }
+    .logo .mark { width: 36px; height: auto; flex-shrink: 0; transition: transform .5s var(--ease); }
+    .logo-sm { font-size: 1.15rem; }
+    .logo-sm .mark { width: 30px; }
+    .logo:hover .mark { transform: translateY(-2px) scale(1.06); }
 
     .logo b {
       font-weight: 400;
@@ -911,6 +913,21 @@
 
 <a href="#main" class="skip-link">Zum Inhalt springen</a>
 
+<!-- Bildmarke einmal definiert, in Kopf- und Fußzeile verwendet -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <linearGradient id="wnzGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#2ee8d5"/><stop offset=".55" stop-color="#8b7bff"/>
+      <stop offset="1" stop-color="#ff7ac6"/>
+    </linearGradient>
+    <g id="wnzMark">
+      <path d="M4.40 4.40 L14.98 36.40 L27.40 15.40 L39.82 36.40 L50.40 4.40" fill="none"
+            stroke-width="4.20" stroke-linecap="round" stroke-linejoin="round"/>
+      <g><circle cx="4.40" cy="4.40" r="4.40"/><circle cx="14.98" cy="36.40" r="4.40"/><circle cx="27.40" cy="15.40" r="4.40"/><circle cx="39.82" cy="36.40" r="4.40"/><circle cx="50.40" cy="4.40" r="4.40"/></g>
+    </g>
+  </defs>
+</svg>
+
 <div class="atmosphere" aria-hidden="true">
   <div class="blob blob-1"></div>
   <div class="blob blob-2"></div>
@@ -925,22 +942,7 @@
 <nav id="nav">
   <div class="container nav-inner">
     <a href="#start" class="logo" aria-label="WebNetZone – zur Startseite">
-      <svg viewBox="0 0 64 64" aria-hidden="true">
-        <defs>
-          <linearGradient id="lg" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0" stop-color="#2ee8d5"/>
-            <stop offset=".55" stop-color="#8b7bff"/>
-            <stop offset="1" stop-color="#ff7ac6"/>
-          </linearGradient>
-        </defs>
-        <rect x="1.5" y="1.5" width="61" height="61" rx="14" fill="none" stroke="url(#lg)" stroke-opacity=".45" stroke-width="2"/>
-        <g stroke="url(#lg)" stroke-width="2.6" stroke-linecap="round" fill="none">
-          <path d="M18 42 L32 20 L46 42"/><path d="M24 33 L40 33"/>
-        </g>
-        <g fill="url(#lg)">
-          <circle cx="32" cy="20" r="4.6"/><circle cx="18" cy="42" r="4.2"/><circle cx="46" cy="42" r="4.2"/>
-        </g>
-      </svg>
+      <svg class="mark" viewBox="0 0 54.8 40.8" fill="none" aria-hidden="true"><use href="#wnzMark" stroke="url(#wnzGrad)" fill="url(#wnzGrad)"/></svg>
       Web<b>Net</b>Zone
     </a>
 
@@ -1229,7 +1231,7 @@
 <!-- FOOTER -->
 <footer>
   <div class="container footer-inner">
-    <a href="#start" class="logo" style="font-size:1.15rem">Web<b>Net</b>Zone</a>
+    <a href="#start" class="logo logo-sm"><svg class="mark" viewBox="0 0 54.8 40.8" fill="none" aria-hidden="true"><use href="#wnzMark" stroke="url(#wnzGrad)" fill="url(#wnzGrad)"/></svg> Web<b>Net</b>Zone</a>
     <div class="footer-links">
       <a href="https://schulinventar.webnetzone.de" target="_blank" rel="noopener">Schulinventar</a>
       <a href="impressum.html">Impressum</a>

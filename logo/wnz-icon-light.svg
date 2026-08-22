@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <title>WebNetZone</title>
+  <defs><linearGradient id="wnzGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2ee8d5"/><stop offset=".55" stop-color="#8b7bff"/><stop offset="1" stop-color="#ff7ac6"/></linearGradient></defs>
+  <rect width="64" height="64" rx="15" fill="#ffffff"/>
+  <rect x="1.25" y="1.25" width="61.5" height="61.5" rx="14" fill="none" stroke="#0b1020" stroke-opacity=".38" stroke-width="1.5"/>
+  <path d="M13.53 19.15 L22.03 44.85 L32.00 27.99 L41.97 44.85 L50.47 19.15" fill="none" stroke="url(#wnzGrad)" stroke-width="3.37" stroke-linecap="round" stroke-linejoin="round"/>
+  <g fill="url(#wnzGrad)"><circle cx="13.53" cy="19.15" r="3.53"/><circle cx="22.03" cy="44.85" r="3.53"/><circle cx="32.00" cy="27.99" r="3.53"/><circle cx="41.97" cy="44.85" r="3.53"/><circle cx="50.47" cy="19.15" r="3.53"/></g>
+</svg>
