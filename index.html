@@ -5,8 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>WebNetZone – Softwareentwicklung und IT aus Hannover</title>
   <meta name="description" content="WebNetZone entwickelt schlanke Softwarelösungen und bietet persönlichen IT-Support für Unternehmen und Bildungseinrichtungen. Aus Hannover, mit direktem Ansprechpartner.">
-  <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <meta name="theme-color" content="#070a14">
+
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <!-- PNG als Rueckfallebene: Safari und aeltere Browser sind mit
+       SVG-Favicons unzuverlaessig -->
+  <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="icon" href="/favicon-16.png" sizes="16x16" type="image/png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#070a14">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#070a14">
 
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="WebNetZone">
@@ -23,7 +31,6 @@
   <meta name="twitter:description" content="Schlanke Softwarelösungen und persönlicher IT-Support. Kein Ticketsystem, sondern ein direkter Ansprechpartner.">
   <meta name="twitter:image" content="https://webnetzone.de/og-image.png">
   <link rel="canonical" href="https://webnetzone.de/">
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
 
   <script type="application/ld+json">
@@ -1630,6 +1637,80 @@
   document.querySelectorAll('section[id]').forEach(function (sec) { spy.observe(sec); });
 
 
+
+
+  /* ── Das Symbol im Tab zeichnet sich einmal selbst ────────
+     Laeuft genau einmal, danach uebernimmt wieder das SVG –
+     das bleibt in jeder Groesse scharf. */
+  (function animateFavicon() {
+    if (reduced || document.hidden) return;
+    var link = document.querySelector('link[rel="icon"][type="image/svg+xml"]');
+    if (!link || !window.requestAnimationFrame) return;
+
+    var cv = document.createElement('canvas');
+    cv.width = cv.height = 64;
+    var c = cv.getContext('2d');
+    if (!c) return;
+
+    var P = [[10.18, 16.82], [20.21, 47.18], [32, 27.26], [43.79, 47.18], [53.82, 16.82]];
+    var NODES = [0, 2, 4];
+    var LEN = 110.3;                 // Gesamtlaenge des W-Zugs
+    var DUR = 950;
+    var start = null;
+    var original = link.getAttribute('href');
+
+    function ease(t) { return 1 - Math.pow(1 - t, 3); }
+
+    function frame(now) {
+      if (start === null) start = now;
+      var t = Math.min((now - start) / DUR, 1);
+      var e = ease(t);
+
+      c.clearRect(0, 0, 64, 64);
+
+      var g = c.createLinearGradient(0, 0, 64, 64);
+      g.addColorStop(0, '#2ee8d5');
+      g.addColorStop(0.55, '#8b7bff');
+      g.addColorStop(1, '#ff7ac6');
+      c.fillStyle = g;
+      c.beginPath();
+      if (c.roundRect) { c.roundRect(0, 0, 64, 64, 15); } else { c.rect(0, 0, 64, 64); }
+      c.fill();
+
+      c.strokeStyle = '#fff';
+      c.fillStyle = '#fff';
+      c.lineWidth = 6.64;
+      c.lineCap = 'round';
+      c.lineJoin = 'round';
+      c.setLineDash([LEN, LEN]);
+      c.lineDashOffset = LEN * (1 - e);
+      c.beginPath();
+      c.moveTo(P[0][0], P[0][1]);
+      for (var i = 1; i < P.length; i++) { c.lineTo(P[i][0], P[i][1]); }
+      c.stroke();
+      c.setLineDash([]);
+
+      // Knoten setzen sich erst, wenn der Strich fast durch ist
+      for (var k = 0; k < NODES.length; k++) {
+        var at = 0.55 + k * 0.13;
+        var nt = Math.min(Math.max((e - at) / 0.28, 0), 1);
+        if (nt <= 0) continue;
+        c.beginPath();
+        c.arc(P[NODES[k]][0], P[NODES[k]][1], 5.12 * ease(nt), 0, Math.PI * 2);
+        c.fill();
+      }
+
+      try { link.setAttribute('href', cv.toDataURL('image/png')); } catch (e) { return; }
+
+      if (t < 1) {
+        requestAnimationFrame(frame);
+      } else {
+        // zurueck auf das Vektorsymbol
+        setTimeout(function () { link.setAttribute('href', original); }, 120);
+      }
+    }
+    requestAnimationFrame(frame);
+  })();
 
   /* ── Konstellation im Hero ────────────────────────────── */
   var canvas = document.getElementById('constellation');

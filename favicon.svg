@@ -1,7 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
-  <title>WebNetZone</title>
-  <defs><linearGradient id="fg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2ee8d5"/><stop offset=".55" stop-color="#8b7bff"/><stop offset="1" stop-color="#ff7ac6"/></linearGradient></defs>
-  <rect width="64" height="64" rx="15" fill="#070a14"/>
-  <path d="M9.34 16.23 L19.76 47.77 L32.00 27.07 L44.24 47.77 L54.66 16.23" fill="none" stroke="url(#fg)" stroke-width="6.90" stroke-linecap="round" stroke-linejoin="round"/>
-  <g fill="url(#fg)"><circle cx="9.34" cy="16.23" r="5.32"/><circle cx="32.00" cy="27.07" r="5.32"/><circle cx="54.66" cy="16.23" r="5.32"/></g>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><defs><linearGradient id="b" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2ee8d5"/><stop offset=".55" stop-color="#8b7bff"/><stop offset="1" stop-color="#ff7ac6"/></linearGradient></defs><rect width="64" height="64" rx="15" fill="url(#b)"/><path d="M10.18 16.82 L20.21 47.18 L32.00 27.26 L43.79 47.18 L53.82 16.82" fill="none" stroke="#ffffff" stroke-width="6.64" stroke-linecap="round" stroke-linejoin="round"/><g fill="#ffffff"><circle cx="10.18" cy="16.82" r="5.12"/><circle cx="32.00" cy="27.26" r="5.12"/><circle cx="53.82" cy="16.82" r="5.12"/></g></svg>
