@@ -6,4 +6,18 @@ Allow: /
 # Sie werden bewusst NICHT per Disallow gesperrt - sonst koennte Google
 # die Seiten nicht abrufen und das noindex nie lesen.
 
+# Sammler fuer KI-Trainingsdaten halten sich an Disallow, aber nicht an
+# noindex. Fuer sie ist die Sperre der richtige Weg: Die Anschrift im
+# Impressum soll nicht in Trainingsdaten landen.
+User-agent: GPTBot
+User-agent: ChatGPT-User
+User-agent: CCBot
+User-agent: Google-Extended
+User-agent: anthropic-ai
+User-agent: ClaudeBot
+User-agent: PerplexityBot
+User-agent: Bytespider
+Disallow: /impressum.html
+Disallow: /datenschutz.html
+
 Sitemap: https://webnetzone.de/sitemap.xml
