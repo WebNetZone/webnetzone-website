@@ -859,29 +859,6 @@
     .kontakt-detail svg { width: 16px; height: 16px; color: var(--aqua); flex-shrink: 0; }
 
 
-    /* ─── ADRESSE KOPIEREN ────────────────────────────────────
-       Ein mailto-Link laeuft ins Leere, wenn kein Mailprogramm
-       eingerichtet ist – auf verwalteten Rechnern die Regel.
-       Dann bleibt dieser Weg. */
-
-    .copy-mail {
-      display: inline-flex; align-items: center; gap: 9px;
-      margin-top: 18px;
-      padding: 10px 20px; border-radius: 11px;
-      font-family: 'DM Sans', sans-serif; font-size: .9rem; font-weight: 500;
-      color: var(--fg-muted);
-      background: var(--surface);
-      border: 1px solid var(--hair);
-      cursor: pointer;
-      transition: color .25s var(--ease), border-color .25s var(--ease), background .25s;
-    }
-    .copy-mail:hover { color: var(--fg); border-color: var(--hair-2); background: var(--surface-2); }
-    .copy-mail svg { width: 16px; height: 16px; flex-shrink: 0; }
-    .copy-mail.done { color: var(--aqua); border-color: rgba(46,232,213,.45); }
-    .copy-mail .ic-check { display: none; }
-    .copy-mail.done .ic-copy { display: none; }
-    .copy-mail.done .ic-check { display: block; }
-
     /* ─── FOOTER ──────────────────────────────────────────── */
 
     footer {
@@ -988,7 +965,7 @@
 
       .atmosphere, .grain, .progress, nav, .mobile-menu, .menu-toggle,
       #constellation, .scroll-cue, .marquee, .mockup, .cursor-glow,
-      .btn, .hero-actions, .copy-mail { display: none !important; }
+      .btn, .hero-actions { display: none !important; }
 
       .container { max-width: none !important; padding: 0 !important; }
       section { padding: 12pt 0 !important; background: none !important; }
@@ -1411,13 +1388,6 @@
         <h2 class="section-title">Sprechen wir miteinander.</h2>
         <p class="kontakt-sub">Frage, Anfrage oder Demo-Wunsch — schreiben Sie einfach. Antwort innerhalb eines Werktages.</p>
         <a href="mailto:info@webnetzone.de" class="btn btn-primary mail-btn" data-magnetic>info@webnetzone.de</a>
-        <div>
-          <button type="button" class="copy-mail" data-copy="info@webnetzone.de">
-            <svg class="ic-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-            <svg class="ic-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-            <span class="label">Adresse kopieren</span>
-          </button>
-        </div>
         <div class="kontakt-details">
           <div class="kontakt-detail">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
@@ -1664,42 +1634,6 @@
   document.querySelectorAll('section[id]').forEach(function (sec) { spy.observe(sec); });
 
 
-  /* ── E-Mail-Adresse in die Zwischenablage ─────────────── */
-  document.querySelectorAll('[data-copy]').forEach(function (btn) {
-    var label = btn.querySelector('.label');
-    var original = label ? label.textContent : '';
-    var timer;
-
-    function done(ok) {
-      btn.classList.toggle('done', ok);
-      if (label) label.textContent = ok ? 'Kopiert' : 'Bitte von Hand kopieren';
-      clearTimeout(timer);
-      timer = setTimeout(function () {
-        btn.classList.remove('done');
-        if (label) label.textContent = original;
-      }, 2600);
-    }
-
-    btn.addEventListener('click', function () {
-      var text = btn.getAttribute('data-copy');
-      if (navigator.clipboard && window.isSecureContext) {
-        navigator.clipboard.writeText(text).then(function () { done(true); },
-                                                 function () { done(false); });
-        return;
-      }
-      // Aelterer Weg fuer Browser ohne Clipboard-API
-      var ta = document.createElement('textarea');
-      ta.value = text;
-      ta.setAttribute('readonly', '');
-      ta.style.cssText = 'position:fixed;top:-1000px;opacity:0';
-      document.body.appendChild(ta);
-      ta.select();
-      var ok = false;
-      try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
-      document.body.removeChild(ta);
-      done(ok);
-    });
-  });
 
   /* ── Konstellation im Hero ────────────────────────────── */
   var canvas = document.getElementById('constellation');
