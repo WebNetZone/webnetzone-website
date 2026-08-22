@@ -920,6 +920,125 @@
 
     @view-transition { navigation: auto; }
 
+
+    /* ─── DRUCK ───────────────────────────────────────────────
+       Die Seite ist durchgehend dunkel. Auf Papier muss sie
+       umgekehrt werden, sonst kommt entweder eine schwarze Seite
+       oder – weil Hintergrundgrafiken im Druckdialog standardmaessig
+       aus sind – weisse Schrift auf weissem Papier. */
+
+    @media print {
+      @page { size: A4; margin: 15mm 14mm; }
+
+      *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+        box-shadow: none !important;
+        text-shadow: none !important;
+        backdrop-filter: none !important;
+      }
+
+      html, body {
+        background: #fff !important;
+        color: #161c2e !important;
+        font-size: 10pt;
+        line-height: 1.5;
+      }
+
+      /* Abschnitte blenden sich per IntersectionObserver ein, und die
+         Ueberschrift Wort fuer Wort. Beim Drucken scrollt niemand –
+         ohne diese Regel bleibt alles unterhalb des ersten Bildschirms
+         unsichtbar. */
+      .reveal, .word {
+        opacity: 1 !important;
+        transform: none !important;
+        filter: none !important;
+      }
+
+      /* Verlaufsschrift auf eine echte Farbe zurueckholen */
+      .shimmer, .logo b {
+        background: none !important;
+        -webkit-text-fill-color: #4a3ec2 !important;
+        color: #4a3ec2 !important;
+      }
+
+      .atmosphere, .grain, .progress, nav, .mobile-menu, .menu-toggle,
+      #constellation, .scroll-cue, .marquee, .mockup, .cursor-glow,
+      .btn, .hero-actions { display: none !important; }
+
+      .container { max-width: none !important; padding: 0 !important; }
+      section { padding: 12pt 0 !important; background: none !important; }
+      .hero { min-height: 0 !important; padding: 0 0 12pt !important; }
+      .hero-inner { max-width: none !important; }
+
+      h1 { font-size: 21pt !important; margin-bottom: 8pt !important; }
+      .section-title { font-size: 15pt !important; }
+      h3, h4 { font-size: 11pt !important; }
+      p, li { font-size: 10pt !important; }
+      .hero-sub, .section-sub, .lede { font-size: 10.5pt !important; }
+
+      h1, h2, h3, h4, .section-title { color: #0b1020 !important; }
+      p, li, .hero-sub, .section-sub, .kontakt-sub { color: #3a4458 !important; }
+      /* strong traegt eine eigene helle Farbe fuer den dunklen Grund */
+      strong, b, .ueber-text strong { color: #0b1020 !important; }
+      .section-label { color: #4a3ec2 !important; }
+      .section-label::before { background: #4a3ec2 !important; }
+
+      .eyebrow, .trust-chip {
+        border: 0.6pt solid #b6bccd !important;
+        background: none !important;
+        color: #3a4458 !important;
+      }
+      .pulse, .pulse::after { display: none !important; }
+
+      .cards { grid-template-columns: 1fr 1fr !important; gap: 10pt !important; }
+      .steps { grid-template-columns: repeat(4, 1fr) !important; gap: 8pt !important; }
+      .steps::before, .steps::after { display: none !important; }
+      .ueber-inner { grid-template-columns: 1fr 1fr !important; gap: 16pt !important; }
+      .produkt-inner { grid-template-columns: 1fr !important; padding: 12pt !important; }
+
+      .card, .fact, .step-dot, .produkt-panel, .produkt-inner,
+      .kontakt-card, .kontakt-inner {
+        background: none !important;
+        border: 0.6pt solid #b6bccd !important;
+        break-inside: avoid;
+      }
+      .produkt-panel, .kontakt-card { padding: 0 !important; }
+      .card-icon, .fact-icon {
+        background: none !important;
+        border: 0.6pt solid #b6bccd !important;
+      }
+      .card-icon svg, .fact-icon svg, .produkt-list svg,
+      .kontakt-detail svg, .trust-chip svg { color: #4a3ec2 !important; }
+      .card-num { color: #8a92a6 !important; }
+      .produkt-badge {
+        background: none !important;
+        border: 0.6pt solid #b6bccd !important;
+        color: #8a6a1e !important;
+      }
+
+      .mail-btn {
+        display: inline-block !important;
+        background: none !important;
+        border: 1pt solid #4a3ec2 !important;
+        color: #4a3ec2 !important;
+        padding: 6pt 12pt !important;
+      }
+
+      footer {
+        background: none !important;
+        border-top: 0.6pt solid #b6bccd;
+        padding: 8pt 0 !important;
+      }
+      footer *, .footer-links a { color: #4a5164 !important; }
+
+      /* Externe Verweise ausschreiben, auf Papier sind sie sonst wertlos */
+      a[href^="http"]::after {
+        content: " (" attr(href) ")";
+        font-size: 8pt; color: #6b7284;
+      }
+    }
+
     /* ─── RESPONSIVE ──────────────────────────────────────── */
 
     @media (max-width: 940px) {
