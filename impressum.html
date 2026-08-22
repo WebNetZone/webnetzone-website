@@ -100,7 +100,7 @@
     }
 
     .logo {
-      display: inline-flex; align-items: center; gap: 11px;
+      display: inline-flex; align-items: center; gap: 15px;
       font-family: 'DM Serif Display', serif; font-size: 1.3rem;
       color: var(--fg); letter-spacing: -.02em;
     }
@@ -109,7 +109,8 @@
     .logo-sm { font-size: 1.15rem; }
     .logo-sm .mark { width: 30px; }
     .logo:hover .mark { transform: translateY(-2px) scale(1.06); }
-    .logo b { font-weight: 400; background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .wordmark { white-space: nowrap; }
+    .logo b { font-weight: 400; color: inherit; }
 
     .back {
       display: inline-flex; align-items: center; gap: 8px;
@@ -206,7 +207,7 @@
   <div class="nav-inner">
     <a href="index.html" class="logo" aria-label="WebNetZone – zur Startseite">
       <svg class="mark" viewBox="0 0 54.8 40.8" fill="none" aria-hidden="true"><use href="#wnzMark" stroke="url(#wnzGrad)" fill="url(#wnzGrad)"/></svg>
-      Web<b>Net</b>Zone
+      <span class="wordmark">Web<b>Net</b>Zone</span>
     </a>
     <a href="index.html" class="back">← <span>Zurück zur Startseite</span></a>
   </div>
@@ -249,7 +250,7 @@
 
 <footer>
   <div class="footer-inner">
-    <a href="index.html" class="logo logo-sm"><svg class="mark" viewBox="0 0 54.8 40.8" fill="none" aria-hidden="true"><use href="#wnzMark" stroke="url(#wnzGrad)" fill="url(#wnzGrad)"/></svg> Web<b>Net</b>Zone</a>
+    <a href="index.html" class="logo logo-sm"><svg class="mark" viewBox="0 0 54.8 40.8" fill="none" aria-hidden="true"><use href="#wnzMark" stroke="url(#wnzGrad)" fill="url(#wnzGrad)"/></svg> <span class="wordmark">Web<b>Net</b>Zone</span></a>
     <div class="footer-links">
       <a href="index.html">Startseite</a>
       <a href="impressum.html">Impressum</a>
