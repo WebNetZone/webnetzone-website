@@ -1,0 +1,12 @@
+BEGIN:VCARD
+VERSION:3.0
+N:Milionis;Aristotelis;;;
+FN:Aristotelis Milionis
+ORG:WebNetZone
+TITLE:Softwareentwicklung und IT
+EMAIL;TYPE=INTERNET,WORK:info@webnetzone.de
+URL;TYPE=WORK:https://webnetzone.de
+URL;TYPE=WORK:https://schulinventar.webnetzone.de
+ADR;TYPE=WORK:;;;Hannover;;;Deutschland
+NOTE:Schlanke Softwareloesungen und persoenlicher IT-Support. Produkt: Schulinventar - Inventarverwaltung fuer Schulen.
+END:VCARD
