@@ -125,6 +125,31 @@
     .item:hover .go { transform:translateX(3px); color:var(--aqua); }
     .item .go svg { width:18px; height:18px; display:block; }
 
+    /* Der Flyer ist kein eigenes Ziel, sondern gehoert zu Schulinventar.
+       Beide sitzen deshalb in einer Karte, die zweite Zeile eingerueckt. */
+    .group {
+      background:var(--surface); border:1px solid var(--hair); border-radius:16px;
+      overflow:hidden; transition:border-color .3s var(--ease), transform .3s var(--ease);
+    }
+    .group:hover { border-color:var(--hair-2); transform:translateY(-3px); }
+    .group .item {
+      background:none; border:none; border-radius:0;
+      transition:background .25s var(--ease);
+    }
+    .group .item:hover { transform:none; background:var(--surface-2); }
+
+    .item.sub {
+      border-top:1px solid var(--hair);
+      padding:13px 20px 13px 56px;
+    }
+    .item.sub .ico { width:28px; height:28px; }
+    .item.sub .t {
+      font-family:'DM Sans',sans-serif; font-size:.95rem; font-weight:600;
+      letter-spacing:0;
+    }
+    .item.sub .d { font-size:.83rem; margin-top:1px; }
+    .item.sub .go svg { width:16px; height:16px; }
+
     .sep { display:flex; align-items:center; gap:14px; margin:30px 0 16px;
       font-size:.72rem; letter-spacing:.16em; text-transform:uppercase; color:var(--fg-dim); }
     .sep::before, .sep::after { content:''; height:1px; flex:1; background:var(--hair); }
@@ -197,6 +222,7 @@
       <span class="go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
     </a>
 
+    <div class="group">
     <a class="item" href="https://schulinventar.webnetzone.de">
       <span class="ico">
         <svg viewBox="0 0 64 64" aria-hidden="true">
@@ -213,17 +239,22 @@
       <span class="txt"><span class="t">Schulinventar</span><span class="d">Inventar und Ausleihe für Schulen</span></span>
       <span class="go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
     </a>
-
-    <a class="item" href="https://schulinventar.webnetzone.de/flyer">
+    <a class="item sub" href="https://schulinventar.webnetzone.de/flyer">
       <span class="ico" style="display:grid;place-items:center">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#8b7bff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:30px;height:30px">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#8b7bff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:24px;height:24px">
           <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/>
           <line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
       </span>
-      <span class="txt"><span class="t">Info-Blatt</span><span class="d">Funktionen und Preise auf einer A4-Seite, als PDF</span></span>
+      <span class="txt"><span class="t">Flyer</span><span class="d">Funktionen und Preise auf einer A4-Seite · PDF</span></span>
       <span class="go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
     </a>
+    </div>
 
+  </div>
+
+  <div class="sep">Kontakt</div>
+
+  <div class="links">
     <a class="item" href="mailto:info@webnetzone.de">
       <span class="ico" style="display:grid;place-items:center">
         <svg viewBox="0 0 24 24" fill="none" stroke="#2ee8d5" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:30px;height:30px">
