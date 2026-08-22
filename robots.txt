@@ -1,0 +1,9 @@
+# https://webnetzone.de
+User-agent: *
+Allow: /
+
+# Impressum und Datenschutz tragen noindex im Seitenkopf.
+# Sie werden bewusst NICHT per Disallow gesperrt - sonst koennte Google
+# die Seiten nicht abrufen und das noindex nie lesen.
+
+Sitemap: https://webnetzone.de/sitemap.xml
